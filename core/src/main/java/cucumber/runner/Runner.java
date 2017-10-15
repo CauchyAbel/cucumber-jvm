@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Runner implements UnreportedStepExecutor {
-    private static final Logger logger = LoggerFactory.getLogger(Runner.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Runner.class);
 
     private final Glue glue;
     private final EventBus bus;
@@ -42,16 +42,16 @@ public class Runner implements UnreportedStepExecutor {
     private final RuntimeOptions runtimeOptions;
 
     public Runner(Glue glue, EventBus bus, Collection<? extends Backend> backends, RuntimeOptions runtimeOptions) {
-        logger.info("Starting cucumber.runner.Runner...\n");
+        LOGGER.info("Starting cucumber.runner.Runner...\n");
         this.glue = glue;
         this.bus = bus;
         this.runtimeOptions = runtimeOptions;
         this.backends = backends;
+        LOGGER.info("Backend(s) loaded: {}", backends.toArray());
         for (Backend backend : backends) {
             backend.loadGlue(glue, runtimeOptions.getGlue());
             backend.setUnreportedStepExecutor(this);
         }
-
     }
 
     //TODO: Maybe this should go into the cucumber step execution model and it should return the result of that execution!

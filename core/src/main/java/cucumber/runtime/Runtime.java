@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
  */
 public class Runtime {
 
-    private static final Logger logger = LoggerFactory.getLogger(RunTime.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RunTime.class);
 
     final Stats stats; // package private to be avaiable for tests.
     private final UndefinedStepsTracker undefinedStepsTracker = new UndefinedStepsTracker();
@@ -96,7 +96,7 @@ public class Runtime {
      * This is the main entry point. Used from CLI, but not from JUnit.
      */
     public void run() throws IOException {
-        logger.info("Run started");
+        LOGGER.info("Run started from CLI");
         // Make sure all features parse before initialising any reporters/formatters
         List<CucumberFeature> features = runtimeOptions.cucumberFeatures(resourceLoader, bus);
 

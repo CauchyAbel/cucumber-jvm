@@ -410,7 +410,7 @@ public class RuntimeOptions {
         if (plugin instanceof Formatter && bus != null) {
             Formatter formatter = (Formatter) plugin;
             formatter.setEventPublisher(bus);
-            LOGGER.info("Formatter used is: {}", plugin.getClass());
+            LOGGER.info("Formatter used: {}", plugin.getClass());
         }
     }
 
