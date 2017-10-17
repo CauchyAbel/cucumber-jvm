@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 
 public final class LoggerFactory {
 
-    static boolean verbose = true;
+    static boolean verbose = false;
 
     public static Logger getLogger(Class<?> clazz) {
         Logger primary = org.slf4j.LoggerFactory.getLogger(clazz);
