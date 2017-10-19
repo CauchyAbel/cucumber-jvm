@@ -39,6 +39,7 @@ public class RuntimeOptionsFactory {
         for (Class classWithOptions = clazz; hasSuperClass(classWithOptions); classWithOptions = classWithOptions.getSuperclass()) {
             CucumberOptions options = getOptions(classWithOptions);
             if (options != null) {
+                LOGGER.info("Options: {}", options);
                 addDryRun(options, args);
                 addMonochrome(options, args);
                 addTags(options, args);
@@ -48,7 +49,9 @@ public class RuntimeOptionsFactory {
                 addSnippets(options, args);
                 addGlue(options, args);
                 addFeatures(options, args);
+                addVerbose(options, args);
                 addJunitOptions(options, args);
+                LOGGER.info("Args: {}", args);
             }
         }
         addDefaultFeaturePathIfNoFeaturePathIsSpecified(args, clazz);
@@ -142,6 +145,12 @@ public class RuntimeOptionsFactory {
     private void addStrict(CucumberOptions options, List<String> args) {
         if (options.strict()) {
             args.add("--strict");
+        }
+    }
+
+    private void addVerbose(CucumberOptions options, List<String> args) {
+        if (options.verbose()) {
+            args.add("--verbose");
         }
     }
 
