@@ -5,6 +5,8 @@ import cucumber.deps.com.thoughtworks.xstream.annotations.XStreamConverter;
 import cucumber.deps.com.thoughtworks.xstream.annotations.XStreamConverters;
 import cucumber.runtime.formatter.PluginFactory;
 import cucumber.runtime.io.MultiLoader;
+import cucumber.util.log.LoggerFactory;
+import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +15,8 @@ import java.util.List;
 import static java.util.Arrays.asList;
 
 public class RuntimeOptionsFactory {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RuntimeOptionsFactory.class);
     private final Class clazz;
     private boolean featuresSpecified = false;
     private boolean glueSpecified = false;
@@ -101,6 +105,7 @@ public class RuntimeOptionsFactory {
         if (!pluginSpecified) {
             args.add("--plugin");
             args.add("null");
+            LOGGER.info("No plugin was specified; using null");
         }
     }
 
@@ -114,6 +119,7 @@ public class RuntimeOptionsFactory {
     private void addDefaultFeaturePathIfNoFeaturePathIsSpecified(List<String> args, Class clazz) {
         if (!featuresSpecified) {
             args.add(MultiLoader.CLASSPATH_SCHEME + packagePath(clazz));
+            LOGGER.info("No Feature Path was specified; using default Feature Path: %s", MultiLoader.CLASSPATH_SCHEME + packagePath(clazz));
         }
     }
 
@@ -129,9 +135,9 @@ public class RuntimeOptionsFactory {
         if (!glueSpecified) {
             args.add("--glue");
             args.add(MultiLoader.CLASSPATH_SCHEME + packagePath(clazz));
+            LOGGER.info("No Glue was specified; using default Glue: %s", MultiLoader.CLASSPATH_SCHEME + packagePath(clazz));
         }
     }
-
 
     private void addStrict(CucumberOptions options, List<String> args) {
         if (options.strict()) {
