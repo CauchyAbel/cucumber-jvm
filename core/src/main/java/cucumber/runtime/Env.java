@@ -43,7 +43,6 @@ public class Env {
                 }
                 LOGGER.info("Using properties {} from bundle {}", bundle.keySet(), bundleName);
             } catch (MissingResourceException ignore) {
-                LOGGER.info("Could not load bundle {}; {}", bundleName, ignore.getMessage());
             }
         }
 

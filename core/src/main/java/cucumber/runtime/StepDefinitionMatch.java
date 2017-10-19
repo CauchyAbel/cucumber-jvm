@@ -21,7 +21,6 @@ import java.util.Locale;
 import static cucumber.util.FixJava.map;
 
 public class StepDefinitionMatch extends Match implements DefinitionMatch {
-    private static final Logger LOGGER = LoggerFactory.getLogger(StepDefinitionMatch.class);
 
     private final StepDefinition stepDefinition;
     private final transient String featurePath;
@@ -61,7 +60,6 @@ public class StepDefinitionMatch extends Match implements DefinitionMatch {
      */
     private Object[] transformedArgs(PickleStep step, LocalizedXStreams.LocalizedXStream xStream) {
         int argumentCount = getArguments().size();
-        LOGGER.info("Arguments from Step Definition: {}", getArguments());
 
         if (!step.getArgument().isEmpty()) {
             argumentCount++;
@@ -86,11 +84,9 @@ public class StepDefinitionMatch extends Match implements DefinitionMatch {
             if (stepArgument instanceof PickleTable) {
                 Object tableArgument = tableArgument((PickleTable) stepArgument, n, xStream);
                 result.add(tableArgument);
-                LOGGER.info("Arguments from DataTable: {}", tableArgument);
             } else if (stepArgument instanceof PickleString) {
                 ParameterInfo parameterInfo = getParameterType(n, String.class);
                 Object arg = parameterInfo.convert(((PickleString) stepArgument).getContent(), xStream);
-                LOGGER.info("Argument from DocString: {}", arg);
                 result.add(arg);
             }
         }
