@@ -119,7 +119,7 @@ public class RuntimeOptionsFactory {
     private void addDefaultFeaturePathIfNoFeaturePathIsSpecified(List<String> args, Class clazz) {
         if (!featuresSpecified) {
             args.add(MultiLoader.CLASSPATH_SCHEME + packagePath(clazz));
-            LOGGER.info("No Feature Path was specified; using default Feature Path: %s", MultiLoader.CLASSPATH_SCHEME + packagePath(clazz));
+            LOGGER.info("No Feature Path was specified; using default Feature Path: {}", MultiLoader.CLASSPATH_SCHEME + packagePath(clazz));
         }
     }
 
@@ -135,7 +135,7 @@ public class RuntimeOptionsFactory {
         if (!glueSpecified) {
             args.add("--glue");
             args.add(MultiLoader.CLASSPATH_SCHEME + packagePath(clazz));
-            LOGGER.info("No Glue was specified; using default Glue: %s", MultiLoader.CLASSPATH_SCHEME + packagePath(clazz));
+            LOGGER.info("No Glue was specified; using default Glue: {}", MultiLoader.CLASSPATH_SCHEME + packagePath(clazz));
         }
     }
 
