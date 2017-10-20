@@ -42,13 +42,14 @@ public class Runner implements UnreportedStepExecutor {
     private final RuntimeOptions runtimeOptions;
 
     public Runner(Glue glue, EventBus bus, Collection<? extends Backend> backends, RuntimeOptions runtimeOptions) {
-        LOGGER.info("Starting cucumber.runner.Runner...\n");
+        LOGGER.info("Starting Runner...");
         this.glue = glue;
         this.bus = bus;
         this.runtimeOptions = runtimeOptions;
         this.backends = backends;
-        LOGGER.info("Backend(s) loaded: {}", backends.toArray());
+        LOGGER.info("Number of Backends: {}", backends.size());
         for (Backend backend : backends) {
+            LOGGER.info("Backend: {}", backend.getClass());
             backend.loadGlue(glue, runtimeOptions.getGlue());
             backend.setUnreportedStepExecutor(this);
         }

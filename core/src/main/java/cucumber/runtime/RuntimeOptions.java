@@ -315,7 +315,6 @@ public class RuntimeOptions {
 
     public List<CucumberFeature> cucumberFeatures(ResourceLoader resourceLoader, EventBus bus) {
         List<CucumberFeature> features = load(resourceLoader, featurePaths, System.out);
-        LOGGER.info("Feature paths: {}", featurePaths);
         getPlugins(); // to create the formatter objects
         bus.send(new TestRunStarted(bus.getTime()));
         for (CucumberFeature feature : features) {
@@ -410,7 +409,7 @@ public class RuntimeOptions {
         if (plugin instanceof Formatter && bus != null) {
             Formatter formatter = (Formatter) plugin;
             formatter.setEventPublisher(bus);
-            LOGGER.info("Formatter used: {}", plugin.getClass());
+            LOGGER.info("Setting Formatter: {}\n", plugin.getClass());
         }
     }
 

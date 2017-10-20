@@ -63,6 +63,16 @@ public class Runtime {
         this.resourceLoader = resourceLoader;
         this.classLoader = classLoader;
         this.runtimeOptions = runtimeOptions;
+        LOGGER.info("Creating Runtime with RuntimeOptions...");
+        LOGGER.info("Feature paths: {}", runtimeOptions.getFeaturePaths());
+        LOGGER.info("Glue: {}", runtimeOptions.getGlue());
+        LOGGER.info("JUnitOptions: {}", runtimeOptions.getJunitOptions());
+        LOGGER.info("SnippetType: {}", runtimeOptions.getSnippetType());
+        LOGGER.info("TagFilters: {}", runtimeOptions.getTagFilters());
+        LOGGER.info("Dry run: {}", runtimeOptions.isDryRun());
+        LOGGER.info("Monochrome: {}", runtimeOptions.isDryRun());
+        LOGGER.info("Strict: {}", runtimeOptions.isDryRun());
+        LOGGER.info("Verbose logging is on!");
         final Glue glue;
         glue = optionalGlue == null ? new RuntimeGlue(new LocalizedXStreams(classLoader)) : optionalGlue;
         this.stats = new Stats(runtimeOptions.isMonochrome());
